@@ -8,6 +8,7 @@ A library that makes it easy to monitor changes in RGB values within some region
 PixelWatcher Options
 ================
 <code>
+
     videoObject: An html5 video or canvas element,
  
     frameRate: Sampling rate, defaults to 6 fps,
