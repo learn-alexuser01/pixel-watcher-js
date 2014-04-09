@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        Morgan (Reece) Phillips @linuxpoetry mrrrgn.com @2014
+    -->
+    <body>
+        <video id="my-video" autoplay loop>
+            <source src="example_data/small.mp4" type="video/mp4"></source>
+        </video>
+        <script src="lib/pixelWatcher.js"></script>
+        <script>
+            // PixelWatcher must be initialized with a video or canvas object
+            var videoObj = document.getElementById("my-video");
+            var pixelWatcher = undefined;
+            
+            videoObj.addEventListener("loadeddata", function() {
+                pixelWatcher = new PixelWatcher({
+                    videoObject: videoObj,
+                    height: 50,
+                    offsetX: 25,
+                    offsetY: videoObj.videoHeight/2
+                });
+              
+                // Sets up an event listener which displays text, colored with the inverse average RGB for the region we're watching. 
+                pixelWatcher.addEventListener("pixelstats", function(e) {
+                    // Invert all the colors
+                    var red = Math.abs(e.detail.r - 255);
+                    var green = Math.abs(e.detail.g - 255);
+                    var blue = Math.abs(e.detail.b - 255);
+                    
+                    // Determine text color-font and raw the text within the same region we're monitoring
+                    pixelWatcher.canvasContext.fillStyle = "rgb("+red+","+green+","+blue+")";
+                    pixelWatcher.canvasContext.font = "bold 14px Arial";
+                    pixelWatcher.canvasContext.fillText(
+                    "I'm auto-generated.  You can see me thanks to pixelWatcher.js! :)",
+                    pixelWatcher.offsetX,
+                    pixelWatcher.offsetY
+                    );
+                });
+                
+                // Start pixelWatcher running
+                pixelWatcher.start();
+                // Add pixelWatcher's internal canvas to visualize what's happening for the demo
+                document.body.appendChild(pixelWatcher.canvas);
+            });
+        </script>
+    </body>
+</html>
