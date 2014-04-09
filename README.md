@@ -5,12 +5,14 @@ A library that makes it easy to monitor changes in RGB values within some region
 
 PixelWatcher emits a single event type named "pixelstats" with data in e.details of the form {r: int, g: int, b: int} where r, g, and b are the average color values over a monitored region.
 
+<img src="example_data/pixelWatcher.gif"></img>
+
+install
+======
 <code>
-// install
 bower install pixelWatcher
 </code>
 
-<img src="example_data/pixelWatcher.gif"></img>
 
 PixelWatcher Options
 ================
