@@ -6,12 +6,20 @@ A library that makes it easy to monitor changes in RGB values within some region
 
 PixelWatcher Options
 ====================
+<code>
 {
+ 
     videoObject: An html5 video or canvas element,
+ 
     frameRate: Sampling rate, defaults to 6 fps,
+ 
     width: Width of the area you'd like to sample for color changes,
+ 
     height: Height of the area you'd like to sample for color changes,
+ 
     offsetX: x-offset of the area you'd like to sample for color changes,
+ 
     offsetY: y-offset of the area you'd like to sample for color changes
-}
 
+}
+</code>
