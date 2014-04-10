@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-python -m SimpleHTTPServer;
+python -m SimpleHTTPServer $1;

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        Morgan (Reece) Phillips @linuxpoetry mrrrgn.com @2014
+    -->
+    <body>
+        <video id="my-video" autoplay></video>
+        <script src="lib/pixelWatcher.js"></script>
+        <script src="lib/webcam.js"></script>
+        <script>
+            // PixelWatcher must be initialized with a video or canvas object
+            var videoObj = document.getElementById("my-video");
+            new WebCam(videoObj);
+            var pixelWatcher = undefined;
+            
+            videoObj.addEventListener("loadeddata", function() {
+                // Creates our pixel watcher
+                pixelWatcher = new PixelWatcher({videoObject: videoObj});
+                
+                // Sets up listening for motion events
+                pixelWatcher.addEventListener("motion", function() {
+                    var msg = document.createElement("span");
+                    msg.innerText = "Motion Detected" + new Date() + ", ";
+                    document.body.appendChild(msg);
+                });
+                                
+                // Start pixelWatcher running
+                pixelWatcher.start();
+            });
+        </script>
+    </body>
+</html>
